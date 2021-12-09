@@ -109,8 +109,6 @@ def eval(cfg, env, agent):
 if __name__ == '__main__':
     cfg = PPOConfig()
     plot_cfg = PlotConfig()
-    # exit()
-    # '''
     # trainning
     env, agent = env_agent_config(cfg, seed=1)
     rewards, ma_rewards = train(cfg, env, agent)
@@ -118,8 +116,6 @@ if __name__ == '__main__':
     agent.save_models(path=plot_cfg.model_path)
     save_results(rewards, ma_rewards, tag='train', path=plot_cfg.result_path)
     plot_rewards(rewards, ma_rewards, plot_cfg, tag='train')
-    # '''
-    # exit()
     # testing
     env, agent = env_agent_config(cfg, seed=10)
     agent.load_models(path=plot_cfg.model_path)
