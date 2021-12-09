@@ -28,7 +28,7 @@ class PPOConfig:
         self.critic_lr = 0.0003
         self.gae_lambda = 0.95
         self.policy_clip = 0.2
-        self.hidden_dim = 64
+        self.hidden_dim = 256
         self.update_fre = 20 # frequency of agent update
 
 class PlotConfig:
@@ -67,7 +67,7 @@ def train(cfg, env, agent):
             state_, reward, done, _ = env.step(action)
             steps += 1
             ep_reward += reward
-            agent.memory.store_memory(state, action, prob, val, reward, done)
+            agent.remember(state, action, prob, val, reward, done)
             if steps % cfg.update_fre == 0:
                 agent.learn()
             state = state_
